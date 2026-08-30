@@ -1,0 +1,909 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0, viewport-fit=cover"
+    >
+
+    <meta
+        name="theme-color"
+        content="#f7f6f2"
+    >
+
+    <meta
+        name="apple-mobile-web-app-capable"
+        content="yes"
+    >
+
+    <meta
+        name="apple-mobile-web-app-status-bar-style"
+        content="default"
+    >
+
+    <meta
+        name="apple-mobile-web-app-title"
+        content="Mis Libros"
+    >
+
+    <title>Mis Libros</title>
+
+<link rel="stylesheet" href="style.css">
+
+<link
+    rel="manifest"
+    href="manifest.json"
+>
+
+<meta
+    name="theme-color"
+    content="#3f5b4b"
+>
+
+<meta
+    name="apple-mobile-web-app-capable"
+    content="yes"
+>
+
+<meta
+    name="apple-mobile-web-app-status-bar-style"
+    content="default"
+>
+
+<meta
+    name="apple-mobile-web-app-title"
+    content="Mis Libros"
+>
+
+<link
+    rel="apple-touch-icon"
+    href="icons/icon-192.png"
+>
+</head>
+
+<body>
+
+<div class="app">
+
+    <!-- ================= HEADER ================= -->
+
+    <header class="top-header">
+
+        <div>
+            <p class="hello">¡Hola! 👋</p>
+
+            <h1>Mis libros</h1>
+
+            <p class="subtitle">
+                Tu biblioteca personal, siempre contigo.
+            </p>
+        </div>
+
+        <button
+            class="icon-button"
+            id="themeButton"
+            aria-label="Cambiar tema"
+        >
+            🌙
+        </button>
+
+    </header>
+
+
+    <!-- ================= DASHBOARD ================= -->
+
+    <section
+        class="page"
+        id="homePage"
+    >
+
+        <!-- HERO -->
+
+        <div class="hero-card">
+
+            <div class="hero-content">
+
+                <span class="hero-small">
+                    TU BIBLIOTECA
+                </span>
+
+                <h2>
+                    Cada libro cuenta una historia.
+                </h2>
+
+                <p>
+                    Guarda tus lecturas, descubre tus hábitos
+                    y disfruta de tu progreso.
+                </p>
+
+                <button
+                    class="primary-button"
+                    id="heroAddButton"
+                >
+                    + Añadir libro
+                </button>
+
+            </div>
+
+            <div class="hero-decoration">
+                📚
+            </div>
+
+        </div>
+
+
+        <!-- STATS -->
+
+        <div class="stats-grid">
+
+            <div class="stat-card">
+
+                <div class="stat-icon">
+                    📚
+                </div>
+
+                <div>
+                    <span>Total</span>
+                    <strong id="totalBooks">0</strong>
+                </div>
+
+            </div>
+
+
+            <div class="stat-card">
+
+                <div class="stat-icon">
+                    ✅
+                </div>
+
+                <div>
+                    <span>Leídos</span>
+                    <strong id="readBooks">0</strong>
+                </div>
+
+            </div>
+
+
+            <div class="stat-card">
+
+                <div class="stat-icon">
+                    📖
+                </div>
+
+                <div>
+                    <span>Leyendo</span>
+                    <strong id="readingBooks">0</strong>
+                </div>
+
+            </div>
+
+
+            <div class="stat-card">
+
+                <div class="stat-icon">
+                    🔖
+                </div>
+
+                <div>
+                    <span>Por leer</span>
+                    <strong id="toReadBooks">0</strong>
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- RECENT BOOKS -->
+
+        <div class="section-header">
+
+            <div>
+                <span class="section-label">
+                    COLECCIÓN
+                </span>
+
+                <h2>Mis libros</h2>
+            </div>
+
+            <button
+                class="text-button"
+                id="viewAllButton"
+            >
+                Ver todos
+            </button>
+
+        </div>
+
+
+        <div
+            id="recentBooks"
+            class="books-grid"
+        ></div>
+
+    </section>
+
+
+    <!-- ================= LIBRARY PAGE ================= -->
+
+    <section
+        class="page hidden"
+        id="libraryPage"
+    >
+
+        <div class="page-heading">
+
+            <span class="section-label">
+                BIBLIOTECA
+            </span>
+
+            <h2>Todos mis libros</h2>
+
+            <p>
+                Explora y organiza tus lecturas.
+            </p>
+
+        </div>
+
+
+        <div class="search-container">
+
+            <span>🔎</span>
+
+            <input
+                type="text"
+                id="searchInput"
+                placeholder="Buscar por título o autor..."
+            >
+
+        </div>
+
+
+        <div class="filters">
+
+            <select id="filterStatus">
+
+                <option value="all">
+                    Todos los estados
+                </option>
+
+                <option value="read">
+                    Leídos
+                </option>
+
+                <option value="reading">
+                    Leyendo
+                </option>
+
+                <option value="to-read">
+                    Por leer
+                </option>
+
+            </select>
+
+
+            <select id="filterGenre">
+
+                <option value="all">
+                    Todos los géneros
+                </option>
+
+                <option value="Novela">
+                    Novela
+                </option>
+
+                <option value="Fantasía">
+                    Fantasía
+                </option>
+
+                <option value="Ciencia ficción">
+                    Ciencia ficción
+                </option>
+
+                <option value="Romance">
+                    Romance
+                </option>
+
+                <option value="Misterio">
+                    Misterio
+                </option>
+
+                <option value="Historia">
+                    Historia
+                </option>
+
+                <option value="Biografía">
+                    Biografía
+                </option>
+
+                <option value="Otro">
+                    Otro
+                </option>
+
+            </select>
+
+        </div>
+
+
+        <div
+            id="libraryBooks"
+            class="books-grid"
+        ></div>
+
+    </section>
+
+
+    <!-- ================= FAVORITES ================= -->
+
+    <section
+        class="page hidden"
+        id="favoritesPage"
+    >
+
+        <div class="page-heading">
+
+            <span class="section-label">
+                FAVORITOS
+            </span>
+
+            <h2>Mis favoritos</h2>
+
+            <p>
+                Tus libros especiales.
+            </p>
+
+        </div>
+
+
+        <div
+            id="favoriteBooks"
+            class="books-grid"
+        ></div>
+
+    </section>
+
+
+    <!-- ================= STATS PAGE ================= -->
+
+    <section
+        class="page hidden"
+        id="statsPage"
+    >
+
+        <div class="page-heading">
+
+            <span class="section-label">
+                ESTADÍSTICAS
+            </span>
+
+            <h2>Mi progreso</h2>
+
+            <p>
+                Conoce mejor tus hábitos de lectura.
+            </p>
+
+        </div>
+
+
+        <div class="big-stat">
+
+            <div class="big-stat-number" id="statsTotal">
+                0
+            </div>
+
+            <div>
+                <strong>libros en tu biblioteca</strong>
+
+                <p>
+                    Sigue leyendo y construyendo tu colección.
+                </p>
+            </div>
+
+        </div>
+
+
+        <div class="progress-card">
+
+            <div class="progress-header">
+
+                <strong>Libros leídos</strong>
+
+                <span id="readPercentage">
+                    0%
+                </span>
+
+            </div>
+
+            <div class="progress-bar">
+
+                <div
+                    id="readProgress"
+                    class="progress-fill"
+                ></div>
+
+            </div>
+
+        </div>
+
+
+        <div class="stats-details">
+
+            <div class="detail-card">
+
+                <span>⭐</span>
+
+                <div>
+                    <small>Calificación media</small>
+                    <strong id="averageRating">
+                        0.0
+                    </strong>
+                </div>
+
+            </div>
+
+
+            <div class="detail-card">
+
+                <span>📄</span>
+
+                <div>
+                    <small>Páginas leídas</small>
+                    <strong id="pagesRead">
+                        0
+                    </strong>
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- ================= SETTINGS ================= -->
+
+    <section
+        class="page hidden"
+        id="settingsPage"
+    >
+
+        <div class="page-heading">
+
+            <span class="section-label">
+                AJUSTES
+            </span>
+
+            <h2>Configuración</h2>
+
+            <p>
+                Personaliza tu experiencia.
+            </p>
+
+        </div>
+
+
+        <div class="settings-card">
+
+            <div class="setting-row">
+
+                <div>
+
+                    <strong>Apariencia</strong>
+
+                    <span>
+                        Cambiar entre modo claro y oscuro
+                    </span>
+
+                </div>
+
+                <button
+                    class="setting-action"
+                    id="settingsThemeButton"
+                >
+                    🌙
+                </button>
+
+            </div>
+
+
+            <div class="setting-row">
+
+                <div>
+
+                    <strong>Exportar biblioteca</strong>
+
+                    <span>
+                        Guarda una copia de tus libros
+                    </span>
+
+                </div>
+
+                <button
+                    class="setting-action"
+                    id="exportButton"
+                >
+                    ↓
+                </button>
+
+            </div>
+
+
+            <div class="setting-row">
+
+                <div>
+
+                    <strong>Importar biblioteca</strong>
+
+                    <span>
+                        Recupera una biblioteca guardada
+                    </span>
+
+                </div>
+
+                <button
+                    class="setting-action"
+                    id="importButton"
+                >
+                    ↑
+                </button>
+
+            </div>
+
+
+            <div class="setting-row danger-row">
+
+                <div>
+
+                    <strong>Eliminar todos los datos</strong>
+
+                    <span>
+                        Esta acción no se puede deshacer
+                    </span>
+
+                </div>
+
+                <button
+                    class="danger-button"
+                    id="clearButton"
+                >
+                    🗑️
+                </button>
+
+            </div>
+
+        </div>
+
+        <input
+            type="file"
+            id="importFile"
+            accept=".json"
+            hidden
+        >
+
+    </section>
+
+
+    <!-- ================= BOTTOM NAV ================= -->
+
+    <nav class="bottom-nav">
+
+        <button
+            class="nav-item active"
+            data-page="homePage"
+        >
+            <span>⌂</span>
+            <small>Inicio</small>
+        </button>
+
+
+        <button
+            class="nav-item"
+            data-page="libraryPage"
+        >
+            <span>📚</span>
+            <small>Biblioteca</small>
+        </button>
+
+
+        <button
+            class="nav-add"
+            id="addBookButton"
+        >
+            +
+        </button>
+
+
+        <button
+            class="nav-item"
+            data-page="favoritesPage"
+        >
+            <span>♥</span>
+            <small>Favoritos</small>
+        </button>
+
+
+        <button
+            class="nav-item"
+            data-page="statsPage"
+        >
+            <span>◔</span>
+            <small>Stats</small>
+        </button>
+
+    </nav>
+
+</div>
+
+
+<!-- ================= MODAL ================= -->
+
+<div
+    class="modal-overlay"
+    id="modal"
+>
+
+    <div class="modal">
+
+        <div class="modal-header">
+
+            <div>
+
+                <span class="section-label">
+                    BIBLIOTECA
+                </span>
+
+                <h2 id="modalTitle">
+                    Añadir libro
+                </h2>
+
+            </div>
+
+            <button
+                class="close-button"
+                id="closeModal"
+            >
+                ×
+            </button>
+
+        </div>
+
+
+        <form id="bookForm">
+
+            <div class="form-group">
+
+                <label>Título</label>
+
+                <input
+                    type="text"
+                    id="title"
+                    placeholder="Ej. Cien años de soledad"
+                    required
+                >
+
+            </div>
+
+
+            <div class="form-group">
+
+                <label>Autor</label>
+
+                <input
+                    type="text"
+                    id="author"
+                    placeholder="Ej. Gabriel García Márquez"
+                    required
+                >
+
+            </div>
+
+
+            <div class="form-row">
+
+                <div class="form-group">
+
+                    <label>Género</label>
+
+                    <select id="genre">
+
+                        <option>Novela</option>
+                        <option>Fantasía</option>
+                        <option>Ciencia ficción</option>
+                        <option>Romance</option>
+                        <option>Misterio</option>
+                        <option>Historia</option>
+                        <option>Biografía</option>
+                        <option>Otro</option>
+
+                    </select>
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label>Estado</label>
+
+                    <select id="status">
+
+                        <option value="to-read">
+                            Por leer
+                        </option>
+
+                        <option value="reading">
+                            Leyendo
+                        </option>
+
+                        <option value="read">
+                            Leído
+                        </option>
+
+                    </select>
+
+                </div>
+
+            </div>
+
+
+            <div class="form-group">
+
+                <label>Páginas</label>
+
+                <input
+                    type="number"
+                    id="pages"
+                    min="0"
+                    placeholder="Ej. 350"
+                >
+
+            </div>
+
+
+            <div class="form-group">
+
+                <label>Progreso (%)</label>
+
+                <input
+                    type="number"
+                    id="progress"
+                    min="0"
+                    max="100"
+                    value="0"
+                    placeholder="0 - 100"
+                >
+
+            </div>
+
+
+            <div class="form-group">
+
+                <label>Fecha de inicio</label>
+
+                <input
+                    type="date"
+                    id="startDate"
+                >
+
+            </div>
+
+
+            <div class="form-group">
+
+                <label>Fecha de finalización</label>
+
+                <input
+                    type="date"
+                    id="finishDate"
+                >
+
+            </div>
+
+
+            <div class="form-group">
+
+                <label>Calificación</label>
+
+                <div
+                    class="rating"
+                    id="rating"
+                >
+
+                    <button
+                        type="button"
+                        data-rating="1"
+                    >
+                        ★
+                    </button>
+
+                    <button
+                        type="button"
+                        data-rating="2"
+                    >
+                        ★
+                    </button>
+
+                    <button
+                        type="button"
+                        data-rating="3"
+                    >
+                        ★
+                    </button>
+
+                    <button
+                        type="button"
+                        data-rating="4"
+                    >
+                        ★
+                    </button>
+
+                    <button
+                        type="button"
+                        data-rating="5"
+                    >
+                        ★
+                    </button>
+
+                </div>
+
+            </div>
+
+
+            <div class="form-group">
+
+                <label>Notas</label>
+
+                <textarea
+                    id="notes"
+                    rows="4"
+                    placeholder="¿Qué te pareció este libro?"
+                ></textarea>
+
+            </div>
+
+
+            <label class="favorite-checkbox">
+
+                <input
+                    type="checkbox"
+                    id="favorite"
+                >
+
+                <span>♥</span>
+
+                Añadir a favoritos
+
+            </label>
+
+
+            <div class="form-actions">
+
+                <button
+                    type="button"
+                    class="cancel-button"
+                    id="cancelButton"
+                >
+                    Cancelar
+                </button>
+
+                <button
+                    type="submit"
+                    class="save-button"
+                >
+                    Guardar libro
+                </button>
+
+            </div>
+
+        </form>
+
+    </div>
+
+</div>
+
+
+<script src="script.js"></script>
+
+</body>
+</html>
